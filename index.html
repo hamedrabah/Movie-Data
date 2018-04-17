@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CS 3300 - Project 2</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="style/all.css"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  	<script src="d3/d3.min.js"></script>
+
+</head>
+<body>
+	<div class="jumbotron text-center">
+		<h1>Does a Blockbuster Budget make a Blockbuster Film? </h1>
+		<h3> <em> Starring</em>:  Hamed Rabah (hr277), William Ford (wbf32), Steven Lai (sl2642) </h3>
+	</div>
+	<html>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+	body {
+	  font-family: Arial;
+	  margin: 0;
+	}
+
+	* {
+	  box-sizing: border-box;
+	}
+
+	img {
+	  vertical-align: middle;
+		width: 10px;
+	}
+
+	.container {
+	  position: relative;
+	}
+
+
+	/* Add a pointer when hovering over the thumbnail images */
+	.cursor {
+	  cursor: pointer;
+	}
+
+	/* On hover, add a black background color with a little bit see-through */
+	.prev:hover,
+	.next:hover {
+	  background-color: rgba(0, 0, 0, 0.8);
+	}
+
+	/* Container for image text */
+	.caption-container {
+	  text-align: center;
+	  padding: 2px 16px;
+	  color: white;
+	}
+
+	.row:after {
+	  content: "";
+	  display: table;
+	  clear: both;
+	}
+
+	/* Six columns side by side */
+	.column {
+	  float: left;
+	  width: 16.66%;
+	}
+
+	/* Add a transparency effect for thumnbail images */
+	.demo {
+	  opacity: 0.6;
+	}
+
+	.active,
+	.demo:hover {
+	  opacity: 1;
+		border: 2px solid red;
+	}
+	</style>
+	<body>
+
+	<h2 style="text-align:center">Select a Movie!</h2>
+
+	<div class="container">
+	  <div class="mySlides">
+	  </div>
+	  <div class="mySlides">
+	  </div>
+	  <div class="mySlides">
+	  </div>
+		<div class="mySlides">
+		</div>
+		<div class="mySlides">
+		</div>
+		<div class="mySlides">
+		</div>
+<!--
+	  <a class="prev" onclick="plusSlides(-1)"> Prev </a>
+	  <a class="next" onclick="plusSlides(1)"> Next </a>
+-->
+	  <div class="row">
+	    <div class="column">
+	      <img class="demo cursor" src="images/avengers.jpg" style="width:100%" onclick="currentSlide(1)" alt="When Tony Stark (Robert Downey Jr.) jump-starts a dormant peacekeeping program, things go terribly awry, forcing him, Thor (Chris Hemsworth), the Incredible Hulk (Mark Ruffalo) and the rest of the Avengers to reassemble. As the fate of Earth hangs in the balance, the team is put to the ultimate test as they battle Ultron, a technological terror hell-bent on human extinction. Along the way, they encounter two mysterious and powerful newcomers, Pietro and Wanda Maximoff">
+	    </div>
+	    <div class="column">
+	      <img class="demo cursor" src="images/justiceLeague.jpg" style="width:100%" onclick="currentSlide(2)" alt="Fueled by his restored faith in humanity and inspired by Superman's selfless act, Bruce Wayne enlists newfound ally Diana Prince to face an even greater threat. Together, Batman and Wonder Woman work quickly to recruit a team to stand against this newly awakened enemy. Despite the formation of an unprecedented league of heroes -- Batman, Wonder Woman, Aquaman, Cyborg and the Flash -- it may be too late to save the planet from an assault of catastrophic proportions.">
+	    </div>
+	    <div class="column">
+	      <img class="demo cursor" src="images/transformers.jpg" style="width:100%" onclick="currentSlide(3)" alt="After an epic battle, a great city lies in ruins, but the Earth itself is saved. As humanity begins to pick up the pieces, a shadowy group emerges to try to take control of history. Meanwhile, an ancient and powerful new menace sets its sights on Earth. A new group of humans, led by Cade Yeager (Mark Wahlberg), helps Optimus Prime (Peter Cullen) and the Autobots rise up to meet their most fearsome challenge yet: a worldwide war of good versus evil.">
+	    </div>
+			<div class="column">
+	      <img class="demo cursor" src="images/avatar.jpg" style="width:100%" onclick="currentSlide(4)" alt="On the lush alien world of Pandora live the Na'vi, beings who appear primitive but are highly evolved. Because the planet's environment is poisonous, human/Na'vi hybrids, called Avatars, must link to human minds to allow for free movement on Pandora. Jake Sully (Sam Worthington), a paralyzed former Marine, becomes mobile again through one such Avatar and falls in love with a Na'vi woman (Zoe Saldana). As a bond with her grows, he is drawn into a battle for the survival of her world.
+">
+	    </div>
+			<div class="column">
+	      <img class="demo cursor" src="images/force.jpg" style="width:100%" onclick="currentSlide(5)" alt="Thirty years after the defeat of the Galactic Empire, the galaxy faces a new threat from the evil Kylo Ren (Adam Driver) and the First Order. When a defector named Finn (John Boyega) crash-lands on a desert planet, he meets Rey (Daisy Ridley), a tough scavenger whose droid contains a top-secret map. Together, the young duo joins forces with Han Solo (Harrison Ford) to make sure the Resistance receives the intelligence concerning the whereabouts of Luke Skywalker (Mark Hamill), the last of the Jedi Knights.
+.">
+	    </div>
+			<div class="column">
+	      <img class="demo cursor" src="images/titanic.jpg" style="width:100%" onclick="currentSlide(6)" alt="James Cameron's Titanic is an epic, action-packed romance set against the ill-fated maiden voyage of the R.M.S. Titanic; the pride and joy of the White Star Line and, at the time, the largest moving object ever built. She was the most luxurious liner of her era -- the 'ship of dreams' -- which ultimately carried over 1,500 people to their death in the ice cold waters of the North Atlantic in the early hours of April 15, 1912.">
+	    </div>
+	  </div>
+	</div>
+	</div>
+	<div class="container movie-info">
+		<div class="well">
+			<div class="caption-container">
+				<p id="caption"></p>
+			</div>
+	</div>
+	</div>
+	<div class="container title">
+		<svg class="graphic" id="graphic" height="750" width="750">
+			<text class="movie-title" id="movie-title" x="20" y="20" font-size="15px">Hover A Point To See Movie Title and Rotten Tomatoes Score</text>
+			<text class="movie-title" id="movie-score" x="20" y="40" font-size="15px"></text>
+			<text x="50" y="75" font-size="12px"> Smaller Budget / Bigger Revenue </text>
+			<text x="530" y="75" font-size="12px"> Bigger Budget / Bigger Revenue </text>
+			<text x="50" y="430" font-size="12px"> Smaller Budget / Smaller Revenue </text>
+			<text x="530" y="430" font-size="12px"> Bigger Budget / Smaller Revenue </text>
+		</svg>
+		<h3 class="movie-title" id="movie-title">Slide to filter movies by rating</h3>
+			<div id="movie-slider"></div>
+	</div>
+
+
+
+	<script type="text/javascript">
+
+		var padding = 50;
+
+		var nestedData, movieData
+
+		function parseLine (line) {
+			return { Title: line["Movie"], Budget: +line["Budget($M)"], Revenue: +line["Worldwide Gross($M)"], Score: +line["Score"]};
+		}
+
+		d3.tsv("budget_revenue_data.tsv", parseLine, function (data) {
+
+			var budgetExtent = d3.extent(data,
+				function (d) { return d.Budget; }
+			);
+
+			var movieScore = d3.extent(data, 
+				function (d) { return d.Score; }
+			);
+
+			var budgetScale = d3.scaleLinear()
+			.domain(budgetExtent)
+			.range([padding, 750 - padding]);
+
+			var revenueExtent = d3.extent(data,
+				function (d) { return d.Revenue }
+			);
+
+			var revenueScale = d3.scaleLinear()
+			.domain(revenueExtent)
+			.range([750 - padding,padding]);
+
+			var svg = d3.select("svg");
+			var index = "";
+			data.forEach(function addDots(movie) {
+				
+				if (movie.Title == "Avengers: Age of Ultron") {
+					index = "p0";
+				}
+				else if (movie.Title == "Jurassic World") {
+					index = "p1";
+				}
+				else if (movie.Title == "Transformers: Age of Extinction") {
+					index = "p2";
+				}
+				else if (movie.Title == "Avatar") {
+					index = "p3";
+				}
+				else if (movie.Title == "Star Wars Ep. VII: The Force Awakens") {
+					index = "p4";
+				}
+				else if (movie.Title == "Titanic") {
+					index = "p5";
+				}
+				var red = (Math.round((budgetScale(movie.Budget) / 750) * 255)).toString();
+				var green = (Math.round((1 - (revenueScale(movie.Revenue) / 750)) * 255)).toString();
+				svg.append("circle")
+				.attr("cx", budgetScale(movie.Budget))
+				.attr("cy", revenueScale(movie.Revenue))
+				.attr("r", 8)
+				.attr("fill","rgb(" + red + "," + green + ",0)")
+				.attr("id", index)
+				.attr("stroke-width", 4)
+				.on("mouseover", function () {
+					d3.select("#movie-title").text(movie.Title);
+					d3.select("#movie-score").text(movie.Score);
+				});
+
+			});
+
+			var xAxis = d3.axisBottom(budgetScale);
+			var yAxis = d3.axisLeft(revenueScale);
+
+			svg.append("g").call(xAxis).attr("transform", "translate(-5,375)");
+			svg.append("g").call(yAxis).attr("transform", "translate(375,0)");
+
+			svg.append("text")
+			.attr("class", "x label")
+			.attr("x", 40)
+			.attr("y", 400)
+			.attr("fill","red")
+			.text("Budget ($M)");
+
+    		svg.append("text")
+    		.attr("class", "y label")
+    		.attr("y", 60)
+    		.attr("x", 255)
+				.attr("fill","green")
+    		.text("Worldwide Gross ($M)");
+
+		});
+
+
+	</script>
+
+	<script>
+		var slideIndex = 1;
+		showSlides(slideIndex);
+
+		function plusSlides(n) {
+		  showSlides(slideIndex += n);
+		}
+
+		function currentSlide(n) {
+		  showSlides(slideIndex = n);
+		}
+
+		function showSlides(n) {
+		  var i;
+		  var slides = document.getElementsByClassName("mySlides");
+		  var dots = document.getElementsByClassName("demo");
+		  var captionText = document.getElementById("caption");
+		  if (n > slides.length) {slideIndex = 1}
+		  if (n < 1) {slideIndex = slides.length}
+		  for (i = 0; i < slides.length; i++) {
+		      slides[i].style.display = "none";
+		  }
+		  for (i = 0; i < dots.length; i++) {
+		      dots[i].className = dots[i].className.replace(" active", "");
+		  }
+		  for (i = 0; i < slides.length; i++) {
+		  		slideIndexString = "#p" + (i).toString();
+		  		d3.select(slideIndexString).attr("stroke", "none");
+		  }
+
+		  slides[slideIndex-1].style.display = "block";
+		  dots[slideIndex-1].className += " active";
+		  captionText.innerHTML = dots[slideIndex-1].alt;
+
+		  slideIndexString = "#p" + (slideIndex - 1).toString();
+		  d3.select(slideIndexString).attr("stroke", "rgb(0,200,255)");
+		  
+		  location.href = "#caption";
+		}
+	</script>
+
+</body>
+</html>
